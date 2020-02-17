@@ -1,16 +1,19 @@
+import java.util.Arrays;
+
 public class Main {
     public static void main(String [] args)
     {
-        StringBuilder reverseString = new StringBuilder();
+        int N = Integer.parseInt(args[0]);
 
-        //Step 1 Split String
-        String[] arrayOfWords = args[0].toString().split(" ");
+        for (int i = 0; i < N ; i++) {
+            //Step 1 Split String
+            String[] arrayOfWords = args[i+1].toString().split(" ");
+            reverse(arrayOfWords);
 
-        reverse(arrayOfWords);
-
-        //Step 3 Print to console reversed array
-        System.out.println(arrayOfWords.toString());
-
+            //Step 3 Print to console reversed array
+            String lineTag = String.format("Case #%s: ", i+1);
+            printArrayWithTag(lineTag, arrayOfWords, arrayOfWords.length);
+        }
     }
 
     static void reverse(String strArray[])
@@ -21,5 +24,14 @@ public class Main {
             strArray[i] = strArray[strArray.length -i -1];
             strArray[strArray.length -i -1] = temp;
         }
+    }
+
+    static void printArrayWithTag(String tag, String strArray[], int size)
+    {
+        StringBuilder output = new StringBuilder();
+        output.append(tag);
+        for (int i=0; i < size; i++)
+            output.append(strArray[i] + " ");
+        System.out.println(output.toString());
     }
 }
